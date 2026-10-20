@@ -1,0 +1,988 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#170d2b">
+<title>Happy Birthday 💜🦋</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+  --purple: #a855f7;
+  --pink: #f0abfc;
+  --white: #fff7ff;
+  --muted: #ddc9ee;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: 'Poppins', sans-serif;
+  color: var(--white);
+  background:
+    radial-gradient(ellipse at 15% 20%, #753ca577, transparent 45%),
+    radial-gradient(ellipse at 85% 80%, #9b3cbd55, transparent 40%),
+    linear-gradient(145deg, #130b26, #291443, #10091e);
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 4px;
+}
+
+.stars, .butterflies {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.stars { z-index: 0; }
+.butterflies { z-index: 1; }
+
+.star {
+  position: absolute;
+  color: white;
+  animation: twinkle 2s infinite alternate;
+}
+
+.butterfly {
+  position: absolute;
+  font-size: 27px;
+  filter: drop-shadow(0 0 10px #d8a4ff);
+  animation: fly 12s ease-in-out infinite;
+  opacity: .8;
+}
+
+.screen {
+  display: none;
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  padding: 22px 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen.active {
+  display: flex;
+  animation: fadeIn .6s ease;
+}
+
+.glass {
+  width: min(100%, 750px);
+  padding: clamp(24px, 5vw, 48px);
+  border: 1px solid #ffffff2c;
+  border-radius: 28px;
+  background: #ffffff0c;
+  box-shadow: 0 20px 80px #00000035;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  text-align: center;
+}
+
+.hero {
+  padding-block: clamp(35px, 8vh, 75px);
+}
+
+.moon {
+  font-size: 43px;
+  margin-bottom: 15px;
+  animation: float 4s infinite;
+}
+
+.eyebrow {
+  color: var(--pink);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  line-height: 1.8;
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+}
+
+.hero h1 {
+  font-size: clamp(35px, 8vw, 68px);
+  line-height: 1.2;
+  margin: 15px 0;
+  background: linear-gradient(90deg, #fff, #e7b5ff, #fff0f8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  max-width: 480px;
+  margin: 12px auto 22px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.hero-butterfly {
+  font-size: 68px;
+  margin: 24px 0;
+  animation: float 3s infinite;
+  filter: drop-shadow(0 0 18px #b66aff);
+}
+
+.btn {
+  padding: 12px 22px;
+  border: 1px solid #ffffff25;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: .25s;
+}
+
+.btn:hover { transform: translateY(-3px); }
+
+.primary {
+  background: linear-gradient(110deg, #a855f7, #d946ef);
+  box-shadow: 0 8px 30px #a855f744;
+}
+
+.secondary { background: #ffffff10; }
+
+.tiny {
+  margin-top: 20px;
+  font-size: 10px;
+  color: #c9b0df;
+}
+
+.content {
+  width: min(100%, 900px);
+  text-align: center;
+}
+
+.section-title {
+  font-size: clamp(29px, 5vw, 44px);
+  margin-top: 12px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+  margin-top: 30px;
+}
+
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 23px 8px;
+  border: 1px solid #ffffff20;
+  border-radius: 20px;
+  background: #ffffff0b;
+  transition: .3s;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+  background: #b96bff20;
+  border-color: #e6b3ff80;
+}
+
+.menu-card span { font-size: 35px; }
+.menu-card strong { font-size: 12px; }
+.menu-card small { font-size: 10px; color: var(--muted); }
+
+.footer {
+  margin-top: 28px;
+  font-size: 11px;
+  color: #c5a5e4;
+}
+
+.activity { max-width: 660px; }
+
+.activity h2 {
+  font-size: clamp(29px, 6vw, 42px);
+  margin-top: 16px;
+}
+
+.back {
+  display: block;
+  padding: 8px 13px;
+  margin: -8px auto 24px 0;
+  border: 1px solid #ffffff25;
+  border-radius: 30px;
+  background: #ffffff0c;
+  font-size: 11px;
+}
+
+.cake-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 28px 0;
+}
+
+.flame {
+  font-size: 35px;
+  filter: drop-shadow(0 0 15px #ffba57);
+  animation: flicker .6s infinite alternate;
+}
+
+.flame.off { visibility: hidden; animation: none; }
+
+.candle { font-size: 40px; margin-top: -3px; }
+
+.cake {
+  font-size: clamp(90px, 20vw, 130px);
+  margin-top: -5px;
+}
+
+.message {
+  color: #f2c8ff;
+  font-size: 13px;
+  line-height: 1.9;
+  margin: 18px auto;
+}
+
+.hidden { display: none !important; }
+
+.gift-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 32px auto;
+  border: none;
+  background: none;
+}
+
+.gift-emoji {
+  font-size: clamp(90px, 23vw, 145px);
+  transition: .4s;
+}
+
+.gift-box:hover .gift-emoji {
+  transform: scale(1.1) rotate(-8deg);
+}
+
+.gift-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--pink);
+}
+
+#giftResult p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.gift-reveal {
+  font-size: 35px;
+  margin: 22px 0;
+  animation: float 2s infinite;
+}
+
+.envelope {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 30px auto;
+  padding: 20px 35px;
+  border: 1px solid #ffffff20;
+  border-radius: 20px;
+  background: #ffffff0b;
+  transition: .3s;
+}
+
+.envelope:hover { transform: scale(1.05); }
+.envelope span { font-size: 85px; }
+.envelope small { color: var(--pink); letter-spacing: 3px; }
+
+.letter-paper {
+  max-width: 500px;
+  margin: 24px auto 0;
+  padding: 24px;
+  border-radius: 6px 20px;
+  text-align: left;
+  color: #513264;
+  background: linear-gradient(135deg, #fff9ff, #f4e4ff);
+  box-shadow: 0 12px 35px #00000035;
+  animation: paperIn .6s ease;
+}
+
+.letter-paper p {
+  font-size: 12px;
+  line-height: 2;
+  margin: 12px 0;
+}
+
+.letter-paper h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 21px;
+  margin: 12px 0;
+}
+
+.letter-date { color: #9965b5; }
+
+.signature {
+  text-align: right;
+  color: #9253b3;
+  font-style: italic;
+}
+
+.photo-frame {
+  max-width: 420px;
+  margin: 26px auto 20px;
+  padding: 9px;
+  border: 1px solid #ffffff30;
+  border-radius: 20px;
+  background: #ffffff0b;
+  box-shadow: 0 15px 40px #00000035;
+}
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  height: clamp(210px, 48vw, 350px);
+  object-fit: cover;
+  border-radius: 13px;
+}
+
+.photo-caption {
+  padding: 14px 5px 8px;
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: #f5d9ff;
+}
+
+.album-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+.album-controls span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 20px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff50;
+}
+
+.dot.active {
+  background: var(--pink);
+  box-shadow: 0 0 10px var(--pink);
+  transform: scale(1.3);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: #080412cc;
+  backdrop-filter: blur(10px);
+}
+
+.modal-card {
+  position: relative;
+  width: min(100%, 460px);
+  max-height: 90dvh;
+  overflow-y: auto;
+  padding: 38px 25px;
+  border: 1px solid #e7c4ff55;
+  border-radius: 26px;
+  text-align: center;
+  background: linear-gradient(145deg, #392054, #1b1031);
+  animation: paperIn .4s ease;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff12;
+  font-size: 25px;
+}
+
+.modal-icon { font-size: 40px; margin-bottom: 15px; }
+.modal-card h2 { margin: 12px 0; font-size: 34px; }
+
+.modal-card p:not(.eyebrow) {
+  margin: 14px 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 2;
+}
+
+.toast {
+  position: fixed;
+  z-index: 30;
+  bottom: 25px;
+  left: 50%;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 12px 18px;
+  border: 1px solid #ffffff25;
+  border-radius: 50px;
+  background: #38204f;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 20px);
+  transition: .3s;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.confetti {
+  position: fixed;
+  z-index: 40;
+  top: -20px;
+  pointer-events: none;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes twinkle {
+  from { opacity: .2; transform: scale(.7); }
+  to { opacity: .9; transform: scale(1.2); }
+}
+
+@keyframes fly {
+  0% { transform: translate(0, 0) rotate(-10deg); }
+  25% { transform: translate(35px, -45px) rotate(15deg); }
+  50% { transform: translate(-15px, -85px) rotate(-15deg); }
+  75% { transform: translate(-40px, -35px) rotate(10deg); }
+  100% { transform: translate(0, 0) rotate(-10deg); }
+}
+
+@keyframes flicker {
+  from { transform: scale(.9) rotate(-4deg); }
+  to { transform: scale(1.08) rotate(4deg); }
+}
+
+@keyframes paperIn {
+  from { opacity: 0; transform: translateY(18px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes confettiFall {
+  to {
+    transform: translate(var(--drift), 110vh) rotate(760deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .screen { padding: 17px 12px; }
+  .glass { padding: 24px 17px; border-radius: 22px; }
+  .hero { padding-block: 40px; }
+  .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .menu-card { padding: 19px 6px; }
+  .menu-card span { font-size: 30px; }
+  .menu-card strong { font-size: 11px; }
+  .menu-card small { font-size: 9px; }
+  .letter-paper { padding: 19px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+<div class="butterflies" id="butterflies"></div>
+
+<!-- HALAMAN PEMBUKA -->
+<section class="screen active" id="home">
+  <div class="glass hero">
+    <div class="moon">🌙</div>
+    <p class="eyebrow">A LITTLE MAGIC FOR YOU</p>
+    <h1>Happy Birthday ♡</h1>
+    <p class="subtitle">
+      Selamat ulang tahun BOKEM, coba deh lu klik tombol masuk di bawah...
+    </p>
+    <div class="hero-butterfly">🦋</div>
+    <button class="btn primary" onclick="startJourney()">
+      Masuk ✨
+    </button>
+    <p class="tiny">by kakoal</p>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="screen" id="main">
+  <div class="content">
+    <p class="eyebrow">A SPECIAL DAY JUST FOR YOU</p>
+    <h1 class="section-title">For You, Birthday Star 💜</h1>
+    <p class="subtitle">coba lu klik salah satu di bawah ini</p>
+
+    <div class="menu-grid">
+      <button class="menu-card" onclick="openPopup()">
+        <span>💌</span><strong>Surat</strong>
+        <small>Doa dan harapan</small>
+      </button>
+
+      <button class="menu-card" onclick="showScreen('cake')">
+        <span>🎂</span><strong>Make a Wish</strong>
+        <small>Tiup lilinmu</small>
+      </button>
+
+      <button class="menu-card" onclick="showScreen('gift')">
+        <span>🎁</span><strong>little gift</strong>
+        <small>Ada hadiah untukmu</small>
+      </button>
+
+      <button class="menu-card" onclick="showScreen('letter')">
+        <span>💌</span><strong>Secret Letter</strong>
+        <small>Surat spesial</small>
+      </button>
+
+      <button class="menu-card" onclick="showScreen('album')">
+        <span>📸</span><strong>Our Memories</strong>
+        <small>Album kenangan</small>
+      </button>
+
+      <button class="menu-card" onclick="surprise()">
+        <span>🦋</span><strong>Magic Surprise</strong>
+        <small>Kejutan rahasia</small>
+      </button>
+    </div>
+
+    <p class="footer">✧ maaf tekat ya adek, gua bikin ini ga gampang... ✧</p>
+  </div>
+</section>
+
+<!-- TIUP LILIN -->
+<section class="screen" id="cake">
+  <div class="glass activity">
+    <button class="back" onclick="showScreen('main')">← Kembali</button>
+    <p class="eyebrow">CLOSE YOUR EYES & MAKE A WISH</p>
+    <h2>Make a Wish! 🎂</h2>
+    <p class="subtitle">Bayangkan sebuah harapan indah, lalu padamkan lilinnya.</p>
+
+    <div class="cake-area">
+      <div class="flame" id="flame">🔥</div>
+      <div class="candle">🕯️</div>
+      <div class="cake">🎂</div>
+    </div>
+
+    <button class="btn primary" id="blowBtn" onclick="blowCandles()">
+      🌬️ Tiup Lilin
+    </button>
+    <p id="cakeMessage" class="message"></p>
+    <button class="btn secondary hidden" id="relightBtn" onclick="relightCandles()">
+      Nyalakan Lagi ✨
+    </button>
+  </div>
+</section>
+
+<!-- BUKA KADO -->
+<section class="screen" id="gift">
+  <div class="glass activity">
+    <button class="back" onclick="showScreen('main')">← Kembali</button>
+    <p class="eyebrow">A LITTLE SOMETHING FOR YOU</p>
+    <h2>Open Your Gift 🎁</h2>
+    <p class="subtitle">Ada sesuatu yang menunggumu di dalamnya.</p>
+
+    <button class="gift-box" id="giftBox" onclick="openGift()">
+      <span class="gift-emoji">🎁</span>
+      <span class="gift-label">KLIK AKU!</span>
+    </button>
+
+    <div id="giftResult" class="hidden">
+      <div class="gift-reveal">SELAMAT LU GUA TRAKTIR DENGAN BUDGET 10K</div>
+      <h3>spesial</h3>
+      <p>
+        lu bebas beli ape aja asal budget nya 10K.
+      </p>
+      <p class="message">Good job ♡</p>
+    </div>
+  </div>
+</section>
+
+<!-- SURAT -->
+<section class="screen" id="letter">
+  <div class="glass activity">
+    <button class="back" onclick="showScreen('main')">← Kembali</button>
+    <p class="eyebrow">A LETTER FROM THE HEART</p>
+    <h2>Surat Kecil Untukmu 💌</h2>
+    <p class="subtitle">Ketuk amplopnya untuk membuka surat.</p>
+
+    <button class="envelope" id="envelope" onclick="openLetter()">
+      <span>💌</span><small>OPEN ME</small>
+    </button>
+
+    <article id="letterPaper" class="letter-paper hidden">
+      <p class="letter-date">A little birthday letter ♡</p>
+      <h3>FOR MY ADIK,</h3>
+      <p>Selamat ulang tahun! 🎂💜</p>
+      <p>
+        Semoga di usia baruLu, lu semakin bahagia,
+        sehat selalu, dan dikelilingi orang-orang yang tulus menyayangi lu.
+      </p>
+      <p>
+        Kalau suatu hari terasa berat, semoga lu selalu menemukan
+        alasan untuk tersenyum lagi. Jangan lupa menghargai setiap
+        langkah kecil yang sudah lu lalui.
+      </p>
+      <p>
+        Semoga semua impian lu perlahan menjadi nyata.
+        Teruslah menjadi diriu sendiri, karena lu punya
+        keistimewaan yang tidak harus sama dengan siapa pun.
+      </p>
+      <p class="signature">
+        With lots of love, 💜<br>
+        Someone who wishes you the best.
+      </p>
+    </article>
+  </div>
+</section>
+
+<!-- ALBUM FOTO -->
+<section class="screen" id="album">
+  <div class="glass activity">
+    <button class="back" onclick="showScreen('main')">← Kembali</button>
+    <p class="eyebrow">LITTLE MOMENTS, BIG MEMORIES</p>
+    <h2>Our Memory Album 📸</h2>
+    <p class="subtitle">setiap foto pasti ada kenangannya.</p>
+
+    <div class="photo-frame">
+      <img id="albumPhoto" src="" alt="Foto kenangan">
+      <div class="photo-caption" id="photoCaption"></div>
+    </div>
+
+    <div class="album-controls">
+      <button class="btn secondary" onclick="changePhoto(-1)">❮</button>
+      <span id="photoCount">01 / 04</span>
+      <button class="btn secondary" onclick="changePhoto(1)">❯</button>
+    </div>
+
+    <div class="dots" id="photoDots"></div>
+    <p class="tiny">Every little moment is worth remembering ✨</p>
+  </div>
+</section>
+
+<!-- POP-UP -->
+<div class="modal hidden" id="wishModal" role="dialog"
+     aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <button class="close" onclick="closePopup()" aria-label="Tutup">×</button>
+    <div class="modal-icon">💜🦋💜</div>
+    <p class="eyebrow">A WISH JUST FOR YOU</p>
+    <h2 id="modalTitle">Happy Birthday!</h2>
+    <p>
+      Semoga hari-hari lu seindah langit berbintang,
+      selembut sayap kupu-kupu, dan sehangat pelukan
+      orang-orang yang menyayangi lu.
+    </p>
+    <p>semoga semua yang lu impikan menjadi kenyataan. ✨</p>
+    <button class="btn primary" onclick="closePopup()">Aamiin ♡</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+// ======================================
+// DATA FOTO ALBUM
+// Ganti URL dengan foto pribadi kamu.
+// ======================================
+const photos = [
+  {
+    src: "1.jpg",
+    caption: "Kerkom di TIM"
+  },
+  {
+    src: "2.jpg",
+    caption: "Tour ke MNC"
+  },
+  {
+    src: "3.jpg",
+    caption: "Selfie"
+  },
+  {
+    src: "4.jpg",
+    caption: "AIB"
+  }
+];
+
+let photoIndex = 0;
+let giftOpened = false;
+let letterOpened = false;
+let candlesBlown = false;
+let toastTimer;
+
+const $ = id => document.getElementById(id);
+
+// BINTANG
+function createStars() {
+  const container = $("stars");
+
+  for (let i = 0; i < 65; i++) {
+    const star = document.createElement("span");
+    star.className = "star";
+    star.textContent = Math.random() > .5 ? "✦" : "·";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.fontSize = 8 + Math.random() * 12 + "px";
+    star.style.animationDelay = Math.random() * 3 + "s";
+    container.appendChild(star);
+  }
+}
+
+// KUPU-KUPU
+function createButterflies() {
+  const container = $("butterflies");
+  const symbols = ["🦋", "✧", "⋆", "🦋", "✦"];
+
+  for (let i = 0; i < 9; i++) {
+    const item = document.createElement("span");
+    item.className = "butterfly";
+    item.textContent = symbols[i % symbols.length];
+    item.style.left = Math.random() * 95 + "%";
+    item.style.top = 15 + Math.random() * 75 + "%";
+    item.style.animationDelay = Math.random() * 8 + "s";
+    item.style.animationDuration = 9 + Math.random() * 9 + "s";
+    container.appendChild(item);
+  }
+}
+
+// NAVIGASI
+function showScreen(id) {
+  const target = $(id);
+  if (!target) return;
+
+  document.querySelectorAll(".screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
+
+  target.classList.add("active");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function startJourney() {
+  showScreen("main");
+  confetti(35);
+  showToast("Selamat ulang tahun! 💜🦋");
+}
+
+// POP-UP
+function openPopup() {
+  $("wishModal").classList.remove("hidden");
+  confetti(25);
+}
+
+function closePopup() {
+  $("wishModal").classList.add("hidden");
+}
+
+$("wishModal").addEventListener("click", event => {
+  if (event.target === $("wishModal")) closePopup();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closePopup();
+});
+
+// TOAST
+function showToast(message) {
+  const toast = $("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2600);
+}
+
+// TIUP LILIN
+function blowCandles() {
+  if (candlesBlown) return;
+
+  candlesBlown = true;
+  $("flame").classList.add("off");
+  $("blowBtn").classList.add("hidden");
+  $("relightBtn").classList.remove("hidden");
+
+  $("cakeMessage").textContent =
+    "✨ Semoga semua harapan baikmu menjadi nyata. Aamiin! 💜";
+
+  confetti(45);
+  showToast("Wish made! Happy birthday! 🎂");
+}
+
+function relightCandles() {
+  candlesBlown = false;
+  $("flame").classList.remove("off");
+  $("blowBtn").classList.remove("hidden");
+  $("relightBtn").classList.add("hidden");
+  $("cakeMessage").textContent = "";
+  showToast("Lilin kembali menyala! 🕯️");
+}
+
+// BUKA KADO
+function openGift() {
+  if (giftOpened) return;
+  giftOpened = true;
+
+  $("giftBox").animate(
+    [
+      { transform: "scale(1) rotate(0)" },
+      { transform: "scale(1.2) rotate(-10deg)" },
+      { transform: "scale(1.1) rotate(10deg)" },
+      { transform: "scale(0) rotate(0)" }
+    ],
+    { duration: 650, easing: "ease-in-out", fill: "forwards" }
+  );
+
+  setTimeout(() => {
+    $("giftBox").classList.add("hidden");
+    $("giftResult").classList.remove("hidden");
+    confetti(60);
+    showToast("Surprise! Ada hadiah untukmu! 💜");
+  }, 650);
+}
+
+// BUKA SURAT
+function openLetter() {
+  if (letterOpened) return;
+  letterOpened = true;
+
+  $("envelope").classList.add("hidden");
+  $("letterPaper").classList.remove("hidden");
+  confetti(18);
+}
+
+// ALBUM FOTO
+function renderAlbum() {
+  const photo = photos[photoIndex];
+
+  $("albumPhoto").src = photo.src;
+  $("albumPhoto").alt = photo.caption;
+  $("photoCaption").textContent = photo.caption;
+
+  $("photoCount").textContent =
+    String(photoIndex + 1).padStart(2, "0") +
+    " / " + String(photos.length).padStart(2, "0");
+
+  const dots = $("photoDots");
+  dots.innerHTML = "";
+
+  photos.forEach((photo, index) => {
+    const dot = document.createElement("button");
+    dot.className = "dot" + (index === photoIndex ? " active" : "");
+    dot.setAttribute("aria-label", "Buka foto " + (index + 1));
+
+    dot.addEventListener("click", () => {
+      photoIndex = index;
+      renderAlbum();
+    });
+
+    dots.appendChild(dot);
+  });
+}
+
+function changePhoto(direction) {
+  photoIndex = (photoIndex + direction + photos.length) % photos.length;
+  renderAlbum();
+}
+
+// KEJUTAN RAHASIA
+function surprise() {
+  confetti(85);
+  showToast("Kamu adalah bagian indah dari dunia ini! 🦋💜");
+}
+
+// CONFETTI
+function confetti(amount = 40) {
+  const colors = ["#d8a4ff", "#f0abfc", "#ffffff", "#c084fc", "#ffdbf5"];
+
+  for (let i = 0; i < amount; i++) {
+    const piece = document.createElement("span");
+    piece.className = "confetti";
+    piece.textContent = Math.random() > .65 ? "✦" : "●";
+    piece.style.left = Math.random() * 100 + "vw";
+    piece.style.color = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.fontSize = 7 + Math.random() * 11 + "px";
+    piece.style.setProperty("--drift", (Math.random() * 180 - 90) + "px");
+
+    const duration = 2 + Math.random() * 3;
+    piece.style.animationDuration = duration + "s";
+    document.body.appendChild(piece);
+
+    setTimeout(() => piece.remove(), duration * 1000 + 100);
+  }
+}
+
+// JALANKAN SAAT HALAMAN SIAP
+createStars();
+createButterflies();
+renderAlbum();
+</script>
+
+</body>
+</html>
